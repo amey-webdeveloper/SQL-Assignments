@@ -1,0 +1,151 @@
+Schema 
+Employee 
+  -empid    int       primary key 
+  -name     varchar
+  -age      int
+  -salary   float
+
+
+Q1. Select all rows and all columns of the Employee Table
+Q2. Select all records of the Employee Table where age is less than 30
+Q3. Select all records of the Employee Table where salary ranges between 18000 and 25000
+Q4. Select all records of the Employee Table where name ends with character 'h'
+Q5. Select all records of the Employee Table where name of the employee can be 'Sandeep' or 'Ruchi' or 'Aditya'
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// First I have create database on mysql command line client
+mysql> CREATE DATABASE db2;
+Query OK, 1 row affected (0.20 sec)
+
+// Then i create the table Employee in the db2 database
+mysql> CREATE TABLE Employee(
+    -> empid int primary key,
+    -> name varchar(255),
+    -> age int,
+    -> salary float(10)
+    -> );
+Query OK, 0 rows affected (0.13 sec)
+
+// Then i checked whether the table is created or not by writing below command
+mysql> show tables;
++---------------+
+| Tables_in_db2 |
++---------------+
+| employee      |
++---------------+
+1 row in set (0.01 sec)
+
+
+//Then i insert records in the table employee by following command
+mysql> insert into employee
+    -> (empid,name,age,salary)
+    -> values
+    -> (1,'Aditya',25,20000),
+    -> (2,'Sandeep',27,30000),
+    -> (3,'Ruchi',29,32000),
+    -> (4,'Amey',32,35000),
+    -> (5,'Sunil',22,50000),
+    -> (6,'Suresh',33,70000),
+    -> (7,'Dinesh',45,80000),
+    -> (8,'Rahul',35,60000),
+    -> (9,'Sanjay',40,50000),
+    -> (10,'Akshay',22,21000),
+    -> (11,'Harshad',28,23000),
+    -> (12,'Aditya',29,24000);
+Query OK, 12 rows affected (0.03 sec)
+Records: 12  Duplicates: 0  Warnings: 0
+
+// by following command i can see the record is inserted
+mysql> select * from employee;
++-------+---------+------+--------+
+| empid | name    | age  | salary |
++-------+---------+------+--------+
+|     1 | Aditya  |   25 |  20000 |
+|     2 | Sandeep |   27 |  30000 |
+|     3 | Ruchi   |   29 |  32000 |
+|     4 | Amey    |   32 |  35000 |
+|     5 | Sunil   |   22 |  50000 |
+|     6 | Suresh  |   33 |  70000 |
+|     7 | Dinesh  |   45 |  80000 |
+|     8 | Rahul   |   35 |  60000 |
+|     9 | Sanjay  |   40 |  50000 |
+|    10 | Akshay  |   22 |  21000 |
+|    11 | Harshad |   28 |  23000 |
+|    12 | Aditya  |   29 |  24000 |
++-------+---------+------+--------+
+12 rows in set (0.00 sec)
+
+Q1. Select all rows and all columns of the Employee Table
+mysql> select * from employee;
++-------+---------+------+--------+
+| empid | name    | age  | salary |
++-------+---------+------+--------+
+|     1 | Aditya  |   25 |  20000 |
+|     2 | Sandeep |   27 |  30000 |
+|     3 | Ruchi   |   29 |  32000 |
+|     4 | Amey    |   32 |  35000 |
+|     5 | Sunil   |   22 |  50000 |
+|     6 | Suresh  |   33 |  70000 |
+|     7 | Dinesh  |   45 |  80000 |
+|     8 | Rahul   |   35 |  60000 |
+|     9 | Sanjay  |   40 |  50000 |
+|    10 | Akshay  |   22 |  21000 |
+|    11 | Harshad |   28 |  23000 |
+|    12 | Aditya  |   29 |  24000 |
++-------+---------+------+--------+
+12 rows in set (0.00 sec)
+
+
+Q2. Select all records of the Employee Table where age is less than 30
+
+mysql> select * from employee where age<30;
++-------+---------+------+--------+
+| empid | name    | age  | salary |
++-------+---------+------+--------+
+|     1 | Aditya  |   25 |  20000 |
+|     2 | Sandeep |   27 |  30000 |
+|     3 | Ruchi   |   29 |  32000 |
+|     5 | Sunil   |   22 |  50000 |
+|    10 | Akshay  |   22 |  21000 |
+|    11 | Harshad |   28 |  23000 |
+|    12 | Aditya  |   29 |  24000 |
++-------+---------+------+--------+
+7 rows in set (0.01 sec)
+
+Q3. Select all records of the Employee Table where salary ranges between 18000 and 25000
+
+mysql> select * from employee where salary between 18000 and 25000;
++-------+---------+------+--------+
+| empid | name    | age  | salary |
++-------+---------+------+--------+
+|     1 | Aditya  |   25 |  20000 |
+|    10 | Akshay  |   22 |  21000 |
+|    11 | Harshad |   28 |  23000 |
+|    12 | Aditya  |   29 |  24000 |
++-------+---------+------+--------+
+4 rows in set (0.02 sec)
+
+
+Q4. Select all records of the Employee Table where name ends with character 'h'
+
+mysql> select * from employee where name like '%h';
++-------+--------+------+--------+
+| empid | name   | age  | salary |
++-------+--------+------+--------+
+|     6 | Suresh |   33 |  70000 |
+|     7 | Dinesh |   45 |  80000 |
++-------+--------+------+--------+
+2 rows in set (0.00 sec)
+
+
+Q5. Select all records of the Employee Table where name of the employee can be 'Sandeep' or 'Ruchi' or 'Aditya'
+mysql> select * from employee where name in ('Sandeep','Ruchi','Aditya');
++-------+---------+------+--------+
+| empid | name    | age  | salary |
++-------+---------+------+--------+
+|     1 | Aditya  |   25 |  20000 |
+|     2 | Sandeep |   27 |  30000 |
+|     3 | Ruchi   |   29 |  32000 |
+|    12 | Aditya  |   29 |  24000 |
++-------+---------+------+--------+
+4 rows in set (0.01 sec)
+
